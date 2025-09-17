@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asset Management - ClipPulse</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Page-specific styles */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+        .gallery-item img {
+            width: 100%;
+            border-radius: 8px;
+        }
+        #main-header h1 a {
+            color: #f0f0f0;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <header id="main-header">
+        <h1><a href="index.html">ClipPulse</a> / My Assets</h1>
+    </header>
+    <main>
+        <div class="gallery-grid" id="asset-gallery">
+            <!-- Assets will be loaded here -->
+        </div>
+    </main>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const gallery = document.getElementById('asset-gallery');
+            for (let i = 0; i < 12; i++) {
+                const item = document.createElement('div');
+                item.classList.add('gallery-item');
+                item.innerHTML = `<img src="https://picsum.photos/300/200?random=${i}" alt="Asset ${i+1}">`;
+                gallery.appendChild(item);
+            }
+        });
+    </script>
+</body>
+</html>

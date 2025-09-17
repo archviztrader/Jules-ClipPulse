@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClipPulse</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app-container">
+        <header id="main-header">
+            <h1>ClipPulse</h1>
+            <nav id="main-nav">
+                <a href="asset-management.html">My Assets</a>
+                <a href="flow-tv.html">Flow TV</a>
+            </nav>
+            <button id="generate-btn">Generate</button>
+        </header>
+        <main id="main-content">
+            <aside id="ingredients-panel">
+                <h2>Ingredients</h2>
+                <div class="ingredient-category" id="engine-section">
+                    <h3>Engine</h3>
+                    <div class="ingredient-item">
+                        <select id="engine-select">
+                            <option value="stepfun">StepFun</option>
+                            <option value="qwen">Qwen</option>
+                        </select>
+                    </div>
+                    <div class="ingredient-item">
+                        <input type="text" id="api-key-input" placeholder="Paste your API key here">
+                        <a href="#" id="get-api-key-link" target="_blank" rel="noopener noreferrer">
+                            <button type="button" id="get-api-key-btn">Get API Key</button>
+                        </a>
+                    </div>
+                </div>
+                <div class="ingredient-category" id="character-section">
+                    <h3>Character</h3>
+                    <div class="ingredient-item">
+                        <input type="text" placeholder="e.g., 'A grizzled detective'">
+                        <button>Save</button>
+                    </div>
+                </div>
+                <div class="ingredient-category" id="setting-section">
+                    <h3>Setting</h3>
+                    <div class="ingredient-item">
+                        <input type="text" placeholder="e.g., 'A rain-slicked alley'">
+                    </div>
+                </div>
+                <div class="ingredient-category" id="lighting-section">
+                    <h3>Lighting</h3>
+                    <div class="ingredient-item">
+                        <select>
+                            <option>Cinematic</option>
+                            <option>Golden Hour</option>
+                            <option>Neon</option>
+                            <option>Night</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="ingredient-category" id="camera-section">
+                    <h3>Camera</h3>
+                    <div class="camera-control">
+                        <label for="pan">Pan</label>
+                        <input type="range" id="pan" name="pan" min="-90" max="90" value="0">
+                    </div>
+                    <div class="camera-control">
+                        <label for="tilt">Tilt</label>
+                        <input type="range" id="tilt" name="tilt" min="-90" max="90" value="0">
+                    </div>
+                    <div class="camera-control">
+                        <label for="zoom">Zoom</label>
+                        <input type="range" id="zoom" name="zoom" min="1" max="5" value="1" step="0.1">
+                    </div>
+                    <div class="camera-control">
+                        <label for="dolly">Dolly</label>
+                        <input type="range" id="dolly" name="dolly" min="-10" max="10" value="0">
+                    </div>
+                </div>
+                <div class="ingredient-category" id="mood-section">
+                    <h3>Mood</h3>
+                    <div class="ingredient-item">
+                        <input type="text" placeholder="e.g., 'Suspenseful, mysterious'">
+                    </div>
+                </div>
+            </aside>
+            <div id="center-area">
+                <section id="storyboard">
+                    <h2>Storyboard</h2>
+                    <div id="storyboard-grid">
+                        <!-- Storyboard panels will be added here -->
+                    </div>
+                </section>
+                <footer id="timeline">
+                    <h2>Timeline</h2>
+                    <div id="timeline-track">
+                        <!-- Timeline clips will be added here -->
+                    </div>
+                </footer>
+            </div>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
