@@ -71,9 +71,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Use a video tag to display the mock video from the backend
             newClip.innerHTML = `
-                <video src="${data.video_url}" loop muted playsinline controls preload="metadata"></video>
+                <video src="${data.video_url}" muted playsinline controls preload="metadata"></video>
                 <div class="panel-info">
-                    <p>${data.clip_name} #${clipCount}</p>
+                    <p>${data.metadata?.character || 'Generated Clip'} #${clipCount}</p>
                 </div>
             `;
 
