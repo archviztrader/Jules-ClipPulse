@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flow TV - ClipPulse</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Page-specific styles */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            padding: 25px;
+        }
+        .gallery-item img {
+            width: 100%;
+            border-radius: 8px;
+        }
+        .gallery-item {
+            background-color: #252525;
+            padding: 15px;
+            border-radius: 8px;
+        }
+        .gallery-item .prompt {
+            font-family: monospace;
+            font-size: 0.9em;
+            color: #a0a0a0;
+            margin-top: 10px;
+            white-space: pre-wrap;
+        }
+        #main-header h1 a {
+            color: #f0f0f0;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <header id="main-header">
+        <h1><a href="index.html">ClipPulse</a> / Flow TV</h1>
+    </header>
+    <main>
+        <div class="gallery-grid" id="flow-tv-gallery">
+            <!-- Community clips will be loaded here -->
+        </div>
+    </main>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const gallery = document.getElementById('flow-tv-gallery');
+            const samplePrompts = [
+                "neon alley, midnight, slow dolly-in on detective",
+                "a vast desert landscape at sunset, cinematic",
+                "a robot serving coffee in a futuristic cafe",
+                "close up on a dragon's eye, fantasy vfx",
+                "a lone astronaut on a red planet",
+                "underwater city with bioluminescent creatures"
+            ];
+            for (let i = 0; i < 6; i++) {
+                const item = document.createElement('div');
+                item.classList.add('gallery-item');
+                item.innerHTML = `
+                    <img src="https://picsum.photos/400/225?random=${i+20}" alt="Flow TV Clip ${i+1}">
+                    <p class="prompt">${samplePrompts[i]}</p>
+                `;
+                gallery.appendChild(item);
+            }
+        });
+    </script>
+</body>
+</html>
