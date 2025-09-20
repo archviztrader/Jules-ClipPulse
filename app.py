@@ -1,9 +1,10 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import json
+import time
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, origins=["http://localhost:*", "http://127.0.0.1:*", "file://*"])
 
 @app.route('/')
 def index():
@@ -15,6 +16,9 @@ def generate():
     print("--- Received Generation Request ---")
     print(json.dumps(data, indent=2))
     print("---------------------------------")
+
+    # Simulate processing time
+    time.sleep(1)
 
     # In a real application, this would be a URL to a generated video.
     # For this mock, we'll use a placeholder video from a public source.

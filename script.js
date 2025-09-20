@@ -1,22 +1,40 @@
 document.addEventListener('DOMContentLoaded', () => {
     const generateBtn = document.getElementById('generate-btn');
     const storyboardGrid = document.getElementById('storyboard-grid');
+    const timelineTrack = document.getElementById('timeline-track');
     let clipCount = 0;
+
+    // Check if required elements exist
+    if (!generateBtn || !storyboardGrid || !timelineTrack) {
+        console.error('Required DOM elements not found');
+        return;
+    }
 
     generateBtn.addEventListener('click', () => {
         // 1. Gather data from the UI
+        const engineSelect = document.getElementById('engine-select');
+        const apiKeyInput = document.getElementById('api-key-input');
+        const characterInput = document.querySelector('#character-section input');
+        const settingInput = document.querySelector('#setting-section input');
+        const lightingSelect = document.querySelector('#lighting-section select');
+        const moodInput = document.querySelector('#mood-section input');
+        const panInput = document.getElementById('pan');
+        const tiltInput = document.getElementById('tilt');
+        const zoomInput = document.getElementById('zoom');
+        const dollyInput = document.getElementById('dolly');
+
         const ingredients = {
-            engine: document.getElementById('engine-select').value,
-            apiKey: document.getElementById('api-key-input').value,
-            character: document.querySelector('#character-section input').value,
-            setting: document.querySelector('#setting-section input').value,
-            lighting: document.querySelector('#lighting-section select').value,
-            mood: document.querySelector('#mood-section input').value,
+            engine: engineSelect ? engineSelect.value : 'stepfun',
+            apiKey: apiKeyInput ? apiKeyInput.value : '',
+            character: characterInput ? characterInput.value : '',
+            setting: settingInput ? settingInput.value : '',
+            lighting: lightingSelect ? lightingSelect.value : 'Cinematic',
+            mood: moodInput ? moodInput.value : '',
             camera: {
-                pan: document.getElementById('pan').value,
-                tilt: document.getElementById('tilt').value,
-                zoom: document.getElementById('zoom').value,
-                dolly: document.getElementById('dolly').value
+                pan: panInput ? panInput.value : '0',
+                tilt: tiltInput ? tiltInput.value : '0',
+                zoom: zoomInput ? zoomInput.value : '1',
+                dolly: dollyInput ? dollyInput.value : '0'
             }
         };
 
@@ -30,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
         storyboardGrid.appendChild(loadingMessage);
 
         // 3. Send data to the backend
-        fetch('http://127.0.0.1:5001/generate', {
+        fetch('http://localhost:5001/generate', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -53,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Use a video tag to display the mock video from the backend
             newClip.innerHTML = `
-                <video src="${data.video_url}" autoplay loop muted playsinline alt="${data.clip_name}"></video>
+                <video src="${data.video_url}" loop muted playsinline controls preload="metadata"></video>
                 <div class="panel-info">
                     <p>${data.clip_name} #${clipCount}</p>
                 </div>
@@ -75,8 +93,6 @@ document.addEventListener('DOMContentLoaded', () => {
             storyboardGrid.appendChild(errorMessage);
         });
     });
-
-    const timelineTrack = document.getElementById('timeline-track');
 
     function handleDragStart(e) {
         e.dataTransfer.setData('text/html', e.target.outerHTML);
